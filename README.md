@@ -72,6 +72,6 @@ Then open `http://localhost:8000/Index.html`.
 
 ## Legal Accuracy
 
-Motions are built from the Federal Rules of Evidence, Federal Rules of Civil Procedure, and leading Supreme Court cases. Some cards simplify genuinely close or circuit-split issues for gameplay purposes. Citations reflect controlling or most-instructive authority as of 2025.
+This game was created using Claude Code from Anthropic and Codex from OpenAI. Motions are built from the Federal Rules of Evidence, Federal Rules of Civil Procedure, and leading Supreme Court cases. Some cards simplify genuinely close or circuit-split issues for gameplay purposes. Citations should reflect controlling or most-instructive authority as of 2025. 
 
-If you spot an error in a ruling, explanation, or citation, use the in-game feedback button or open a GitHub issue.
+The motion cards and explanations were run through the latest versions of Claude Code (Opus 4.7), Codex (ChatGPT 5.5), and Gemini (3.1 pro) multiple times, but they have not been thoroughly reviewed or tested for accuracy by any human. Moreover, legal rulings change frequently, and even the more established doctrines can be overturned. Thus, while the game is intended to be as substantively correct as possible, legal accuracy is not guaranteed. If you spot an error in a ruling, explanation, or citation, use the in-game feedback button or open a GitHub issue.
