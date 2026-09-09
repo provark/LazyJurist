@@ -434,7 +434,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 541 U.S. 36",
-            "url": "https://www.law.cornell.edu/supremecourt/text/541/36"
+            "url": "https://supreme.justia.com/cases/federal/us/541/36/"
           }
         ]
       },
@@ -470,7 +470,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 547 U.S. 813",
-            "url": "https://www.law.cornell.edu/supremecourt/text/547/813"
+            "url": "https://supreme.justia.com/cases/federal/us/547/813/"
           }
         ]
       },
@@ -1305,7 +1305,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 573 U.S. 373",
-            "url": "https://www.law.cornell.edu/supremecourt/text/573/373"
+            "url": "https://supreme.justia.com/cases/federal/us/573/373/"
           }
         ]
       },
@@ -1377,7 +1377,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 556 U.S. 332",
-            "url": "https://www.law.cornell.edu/supremecourt/text/556/332"
+            "url": "https://supreme.justia.com/cases/federal/us/556/332/"
           }
         ]
       },
@@ -1605,7 +1605,7 @@ const TRACKS = {
           },
           {
             "label": "Opinion · 587 U.S. 678",
-            "url": "https://www.law.cornell.edu/supremecourt/text/587/678"
+            "url": "https://www.law.cornell.edu/supremecourt/text/17-646"
           },
           {
             "label": "Constitution · Amendment V",
@@ -1757,7 +1757,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 569 U.S. 1",
-            "url": "https://www.law.cornell.edu/supremecourt/text/569/1"
+            "url": "https://supreme.justia.com/cases/federal/us/569/1/"
           }
         ]
       },
@@ -1829,7 +1829,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 575 U.S. 348",
-            "url": "https://www.law.cornell.edu/supremecourt/text/575/348"
+            "url": "https://supreme.justia.com/cases/federal/us/575/348/"
           }
         ]
       },
@@ -1937,7 +1937,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 560 U.S. 370",
-            "url": "https://www.law.cornell.edu/supremecourt/text/560/370"
+            "url": "https://supreme.justia.com/cases/federal/us/560/370/"
           }
         ]
       },
@@ -2049,7 +2049,7 @@ const TRACKS = {
           },
           {
             "label": "Opinion · 541 U.S. 36",
-            "url": "https://www.law.cornell.edu/supremecourt/text/541/36"
+            "url": "https://supreme.justia.com/cases/federal/us/541/36/"
           }
         ]
       },
@@ -2193,7 +2193,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 559 U.S. 356",
-            "url": "https://www.law.cornell.edu/supremecourt/text/559/356"
+            "url": "https://supreme.justia.com/cases/federal/us/559/356/"
           },
           {
             "label": "Opinion · 466 U.S. 668",
@@ -2201,7 +2201,7 @@ const TRACKS = {
           },
           {
             "label": "Opinion · 582 U.S. 357",
-            "url": "https://www.law.cornell.edu/supremecourt/text/582/357"
+            "url": "https://www.law.cornell.edu/supremecourt/text/16-327"
           }
         ]
       },
@@ -2237,11 +2237,11 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 566 U.S. 134",
-            "url": "https://www.law.cornell.edu/supremecourt/text/566/134"
+            "url": "https://supreme.justia.com/cases/federal/us/566/134/"
           },
           {
             "label": "Opinion · 566 U.S. 156",
-            "url": "https://www.law.cornell.edu/supremecourt/text/566/156"
+            "url": "https://supreme.justia.com/cases/federal/us/566/156/"
           }
         ]
       },
@@ -2436,11 +2436,11 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 550 U.S. 544",
-            "url": "https://www.law.cornell.edu/supremecourt/text/550/544"
+            "url": "https://supreme.justia.com/cases/federal/us/550/544/"
           },
           {
             "label": "Opinion · 556 U.S. 662",
-            "url": "https://www.law.cornell.edu/supremecourt/text/556/662"
+            "url": "https://supreme.justia.com/cases/federal/us/556/662/"
           }
         ]
       },
@@ -2476,11 +2476,11 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 550 U.S. 544",
-            "url": "https://www.law.cornell.edu/supremecourt/text/550/544"
+            "url": "https://supreme.justia.com/cases/federal/us/550/544/"
           },
           {
             "label": "Opinion · 556 U.S. 662",
-            "url": "https://www.law.cornell.edu/supremecourt/text/556/662"
+            "url": "https://supreme.justia.com/cases/federal/us/556/662/"
           }
         ]
       },
@@ -2664,7 +2664,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 545 U.S. 546",
-            "url": "https://www.law.cornell.edu/supremecourt/text/545/546"
+            "url": "https://supreme.justia.com/cases/federal/us/545/546/"
           },
           {
             "label": "28 U.S.C. § 1332",
@@ -2744,7 +2744,7 @@ const TRACKS = {
           },
           {
             "label": "Opinion · 564 U.S. 873",
-            "url": "https://www.law.cornell.edu/supremecourt/text/564/873"
+            "url": "https://supreme.justia.com/cases/federal/us/564/873/"
           }
         ]
       },
@@ -2780,7 +2780,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 564 U.S. 338",
-            "url": "https://www.law.cornell.edu/supremecourt/text/564/338"
+            "url": "https://supreme.justia.com/cases/federal/us/564/338/"
           },
           {
             "label": "Civil Procedure Rule 23",
@@ -2856,7 +2856,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 571 U.S. 49",
-            "url": "https://www.law.cornell.edu/supremecourt/text/571/49"
+            "url": "https://supreme.justia.com/cases/federal/us/571/49/"
           },
           {
             "label": "28 U.S.C. § 1404",
@@ -3084,7 +3084,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 560 U.S. 538",
-            "url": "https://www.law.cornell.edu/supremecourt/text/560/538"
+            "url": "https://supreme.justia.com/cases/federal/us/560/538/"
           },
           {
             "label": "Civil Procedure Rule 15",
@@ -3128,7 +3128,7 @@ const TRACKS = {
           },
           {
             "label": "Opinion · 594 U.S. 413",
-            "url": "https://www.law.cornell.edu/supremecourt/text/594/413"
+            "url": "https://www.law.cornell.edu/supremecourt/text/20-297"
           }
         ]
       },
@@ -3164,7 +3164,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 577 U.S. 442",
-            "url": "https://www.law.cornell.edu/supremecourt/text/577/442"
+            "url": "https://supreme.justia.com/cases/federal/us/577/442/"
           },
           {
             "label": "Civil Procedure Rule 23",
@@ -3204,11 +3204,11 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 550 U.S. 544",
-            "url": "https://www.law.cornell.edu/supremecourt/text/550/544"
+            "url": "https://supreme.justia.com/cases/federal/us/550/544/"
           },
           {
             "label": "Opinion · 556 U.S. 662",
-            "url": "https://www.law.cornell.edu/supremecourt/text/556/662"
+            "url": "https://supreme.justia.com/cases/federal/us/556/662/"
           }
         ]
       },
@@ -3244,11 +3244,11 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 571 U.S. 117",
-            "url": "https://www.law.cornell.edu/supremecourt/text/571/117"
+            "url": "https://supreme.justia.com/cases/federal/us/571/117/"
           },
           {
             "label": "Opinion · 564 U.S. 915",
-            "url": "https://www.law.cornell.edu/supremecourt/text/564/915"
+            "url": "https://supreme.justia.com/cases/federal/us/564/915/"
           }
         ]
       },
@@ -3284,7 +3284,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 563 U.S. 333",
-            "url": "https://www.law.cornell.edu/supremecourt/text/563/333"
+            "url": "https://supreme.justia.com/cases/federal/us/563/333/"
           },
           {
             "label": "9 U.S.C. § 2",
@@ -4023,7 +4023,7 @@ const TRACKS = {
           },
           {
             "label": "Opinion · 593 U.S. 522",
-            "url": "https://www.law.cornell.edu/supremecourt/text/593/522"
+            "url": "https://www.law.cornell.edu/supremecourt/text/19-123"
           },
           {
             "label": "Constitution · Amendment I",
@@ -4251,11 +4251,11 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 554 U.S. 570",
-            "url": "https://www.law.cornell.edu/supremecourt/text/554/570"
+            "url": "https://supreme.justia.com/cases/federal/us/554/570/"
           },
           {
             "label": "Opinion · 597 U.S. 1",
-            "url": "https://www.law.cornell.edu/supremecourt/text/597/1"
+            "url": "https://www.supremecourt.gov/opinions/21pdf/597us1r54_7648.pdf"
           },
           {
             "label": "Constitution · Amendment II",
@@ -4375,11 +4375,11 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 585 U.S. 755",
-            "url": "https://www.law.cornell.edu/supremecourt/text/585/755"
+            "url": "https://www.law.cornell.edu/supremecourt/text/16-1140"
           },
           {
             "label": "Opinion · 600 U.S. 570",
-            "url": "https://www.law.cornell.edu/supremecourt/text/600/570"
+            "url": "https://www.supremecourt.gov/opinions/22pdf/600us1r58_7khn.pdf"
           }
         ]
       },
@@ -4491,7 +4491,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 545 U.S. 1",
-            "url": "https://www.law.cornell.edu/supremecourt/text/545/1"
+            "url": "https://supreme.justia.com/cases/federal/us/545/1/"
           },
           {
             "label": "Opinion · 317 U.S. 111",
@@ -4531,7 +4531,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 545 U.S. 469",
-            "url": "https://www.law.cornell.edu/supremecourt/text/545/469"
+            "url": "https://supreme.justia.com/cases/federal/us/545/469/"
           },
           {
             "label": "Constitution · Amendment V",
@@ -4651,7 +4651,7 @@ const TRACKS = {
         "authorities": [
           {
             "label": "Opinion · 594 U.S. 595",
-            "url": "https://www.law.cornell.edu/supremecourt/text/594/595"
+            "url": "https://www.law.cornell.edu/supremecourt/text/19-251"
           },
           {
             "label": "Opinion · 357 U.S. 449",
