@@ -1,0 +1,13 @@
+{
+  "name": "lazy-jurist",
+  "private": true,
+  "version": "2.0.0",
+  "scripts": {
+    "test": "node --test tests/core.test.cjs",
+    "start": "node tools/serve.cjs",
+    "test:browser": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.55.1"
+  }
+}

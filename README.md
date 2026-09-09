@@ -1,77 +1,84 @@
 # Lazy Jurist
 
-A browser-based legal motion simulation game for law students and practicing attorneys. Rule on real legal motions drawn from the Federal Rules of Evidence, Federal Rules of Civil Procedure, and leading Supreme Court decisions.
+A static browser game for practicing rulings on legal motions. Choose Evidence, Criminal Procedure, Civil Procedure, Constitutional Law, Recent Supreme Court, or a Mixed Docket.
 
 **Live:** [lazyjurist.com](https://lazyjurist.com)
 
----
+## Playing
 
-## What It Is
+- **Study** is the default: untimed practice, no early removal, and a chance to review every ruling.
+- **Challenge** uses 45/55/65 seconds for easy/medium/hard motions. Reputation starts at 50. Zero reputation or a fourth consecutive wrong ruling ends the docket. Three correct rulings earn Judicial Authority, which halves the next base reputation loss; overtime is added separately. Every correct ruling breaks a wrong streak, including late answers.
+- Sessions contain **up to ten motions**. Topic buttons show the actual docket length and lifetime accuracy; their tooltips show the total bank size and detailed counts.
+- Decide using the ruling buttons, left/right arrow keys, or a horizontal swipe. Vertical gestures scroll the page.
+- Unseen motions are selected before repeats across all difficulty groups. Replaying a topic never erases lifetime coverage.
+- **Practice missed** revisits motions whose most recent answer was wrong. Correcting one removes it from that queue while preserving its historical attempts.
+- Split decisions count separately from correct/wrong accuracy and do not change streaks.
+- After a ruling, expand **Check your reasoning** to save an optional note. **Review docket** includes the original record, both ruling options, explanations, authority links, and notes. **Review last docket** survives a reload, including a partially completed docket.
 
-Players take the role of a federal judge working through a docket of ten motions per session. Each motion presents a fact pattern, the moving party's position, and two possible rulings — Grant or Deny. After ruling, the game reveals whether you got it right, explains the applicable legal rule, and cites the controlling authority.
-
-The game tracks judicial reputation (a running score that rises and falls with correct and incorrect rulings), streaks, and a correct/wrong tally per session. Reputation dropping to zero ends the session early.
-
----
-
-## Practice Areas
-
-| Track | Motions | Coverage |
-|---|---|---|
-| Evidence | 32 | Admissibility, hearsay, authentication, impeachment, privilege — Federal Rules of Evidence |
-| Criminal Procedure | 32 | Fourth, Fifth, and Sixth Amendment motions from stop-and-frisk through plea and trial |
-| Civil Procedure | 28 | Pleading, jurisdiction, Erie, joinder, class actions, JMOL — Federal Rules of Civil Procedure |
-| Constitutional Law | 33 | Speech, religion, equal protection, due process, takings, commerce, state action |
-| Recent Supreme Court | 30 | Roberts Court doctrine: agency power, guns, religion, equality, elections, separation of powers |
-| Mixed Docket | 10 | Random draw from all tracks — bar exam simulation mode |
-
----
-
-## Game Mechanics
-
-- **10 motions per session**, drawn from unseen cards first
-- **Timed rulings** — 45 seconds for easy, 55 for medium, 65 for hard; overtime accrues rep penalties
-- **Judicial Reputation** starts at 50 and shifts with each ruling; reputation reaching 0 ends the session
-- **Streaks** — three consecutive correct rulings activates an Authority Bonus that halves rep losses; three consecutive wrong rulings triggers a Warning
-- **Difficulty weighting** — each session draws from easy, medium, hard, and ambiguous buckets
-- **Anti-repeat logic** — unseen motions are prioritized; seen motions rotate in as backfill
-- **Topic filters** — each track exposes subtopic chips (e.g., Hearsay · 8, 4th Amendment · 14) to drill a specific area
-- **Collapsed card view** — after ruling, the motion card stays visible alongside the explanation so players can connect the facts to the legal rule
-
----
+Progress, notes, the last docket, and preferences stay in this browser's local storage. Clearing browser data removes them. The current in-progress timer and card are not resumed after a reload; the last decided motions remain available for review. If storage is blocked, the current page remains playable but persistence is unavailable.
 
 ## Feedback
 
-Players can flag any motion card using the **⚑ FLAG THIS MOTION** button in the bottom-right corner during play. The form auto-captures the motion title, track, correct ruling, and citation — so a lawyer who spots an error doesn't have to describe which card they mean.
+Flag a motion during play or from the review screen. Pre-ruling feedback does not reveal the answer, and the timer pauses while the form is open. The form submits the motion's stable ID, title, track, answer, citation, comment, and optional email through Formspree. No progress or study notes are sent automatically.
 
----
+## Content
 
-## Technical Notes
+| Track | Motions |
+|---|---:|
+| Evidence | 32 |
+| Criminal Procedure | 32 |
+| Civil Procedure | 28 |
+| Constitutional Law | 33 |
+| Recent Supreme Court | 30 |
+| Total | 155 |
 
-- Single-file HTML/CSS/JS — no build step, no dependencies, no framework
-- Works directly in any modern browser
-- State persisted via `localStorage` (theme, sound, seen motions)
-- Two themes: **Classic** (VT323 monospace, green-on-black CRT aesthetic) and **Readable** (system sans-serif, higher contrast)
-- Background image: `Background_image_2.png`
+Recent Supreme Court has five Grant and five Deny answers at each difficulty. Seven motions were reframed from the opposing party's procedural position to improve balance; the underlying legal holdings were not inverted. See [CONTENT_CHANGES.md](CONTENT_CHANGES.md).
 
----
+## Run locally
 
-## Running Locally
+No build or runtime dependencies are required. With Node.js:
 
-```bash
-# Python
-python -m http.server 8000 --directory .
-
-# Node
-npx serve .
+```sh
+npm start
 ```
 
-Then open `http://localhost:8000/Index.html`.
+Open `http://127.0.0.1:4173`. A Python static server also works; use the exact `/Index.html` URL. Opening `Index.html` directly is supported, though local storage behavior for file URLs varies by browser.
 
----
+## Files and hosting
 
-## Legal Accuracy
+- `Index.html`: page structure and initial theme selection
+- `styles.css`: Classic/Readable themes and responsive layout
+- `data.js`: motion bank and explicit topic metadata
+- `core.js`: scoring, sampling, and persistent progress
+- `app.js`: interface, timers, keyboard/swipe input, review, and feedback
+- `Background_image_2.png`: courtroom background
 
-This game was created using Claude Code from Anthropic and Codex from OpenAI. Motions are built from the Federal Rules of Evidence, Federal Rules of Civil Procedure, and leading Supreme Court cases. Some cards simplify genuinely close or circuit-split issues for gameplay purposes. Citations should reflect controlling or most-instructive authority as of 2025. 
+Publish these six files together. Keep the existing `Index.html` entry point and hosting route. This revision does not replace the deployment provider or add a build requirement. Node and Playwright are used only for development and tests.
 
-The motion cards and explanations were run through the latest versions of Claude Code (Opus 4.7), Codex (ChatGPT 5.5), and Gemini (3.1 pro) multiple times, but they have not been thoroughly reviewed or tested for accuracy by any human. Moreover, legal rulings change frequently, and even the more established doctrines can be overturned. Thus, while the game is intended to be as substantively correct as possible, legal accuracy is not guaranteed. If you spot an error in a ruling, explanation, or citation, use the in-game feedback button or open a GitHub issue.
+## Checks
+
+Core tests require only Node.js 22 or later:
+
+```sh
+npm test
+```
+
+Browser checks:
+
+```sh
+npm ci
+npx playwright install chromium firefox
+npm run test:browser
+```
+
+GitHub Actions runs the core checks and Chromium desktop/phone plus Firefox browser checks on pushes and pull requests. Browser tests intercept feedback requests; they do not submit real comments.
+
+## Editing motions
+
+Keep each motion's `id` permanent. Preserve `legacyTitles` so progress from the original game can migrate after title edits. Explicit `topic`, `jurisdiction`, `ambiguityReason`, `authorities`, and `lastReviewed` fields make future review easier. Do not infer topics from citation text or fabricate review dates. Update the record, moving party, answer options, consequences, and scores together when changing procedural framing.
+
+## Legal accuracy
+
+The game was created with assistance from Claude Code, Codex, and Gemini. It simplifies some close questions for gameplay and is not legal advice. The original bank was intended to reflect authority through 2025; adding source links does not certify that every card is current or legally complete.
+
+`lastReviewed` remains null and the interface says **Substantive review pending** until a documented substantive review is completed. The revised motions have source references and content-edit dates, which are distinct from a full legal review. Use the flag button when an explanation, citation, or ruling needs correction.
