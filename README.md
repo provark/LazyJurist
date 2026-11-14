@@ -17,6 +17,10 @@ A static browser game for practicing rulings on legal motions. Choose Evidence, 
 
 Progress, notes, the last docket, and preferences stay in this browser's local storage. Clearing browser data removes them. The current in-progress timer and card are not resumed after a reload; the last decided motions remain available for review. If storage is blocked, the current page remains playable but persistence is unavailable.
 
+## Install on a phone
+
+On an iPhone, open the site in Safari, tap Share, then **Add to Home Screen**. On Android, use the browser's **Install app** option. The installed game opens full-screen and works offline once it has loaded online once. The network copy is used whenever it is reachable, so new versions appear on the next launch. Feedback needs a connection.
+
 ## Feedback
 
 Flag a motion during play or from the review screen. Pre-ruling feedback does not reveal the answer, and the timer pauses while the form is open. The form submits the motion's stable ID, title, track, answer, citation, comment, and optional email through Formspree. No progress or study notes are sent automatically.
@@ -52,8 +56,11 @@ Open `http://127.0.0.1:4173`. A Python static server also works; use the exact `
 - `core.js`: scoring, sampling, and persistent progress
 - `app.js`: interface, timers, keyboard/swipe input, review, and feedback
 - `Background_image_2.webp`: courtroom background
+- `manifest.webmanifest` and `icons/`: name, colours, and icons for a home-screen install
+- `sw.js`: service worker that keeps the game playable offline
+- `fonts/`: bundled VT323 and Press Start 2P fonts with their Open Font License texts
 
-Publish these six files together. Keep the existing `Index.html` entry point and hosting route. This revision does not replace the deployment provider or add a build requirement. Node and Playwright are used only for development and tests.
+Publish all of these together, with `sw.js` at the site root. Keep the existing `Index.html` entry point and hosting route. This revision does not replace the deployment provider or add a build requirement. Node and Playwright are used only for development and tests.
 
 ## Checks
 

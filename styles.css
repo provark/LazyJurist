@@ -1,3 +1,7 @@
+/* Fonts are bundled so the game works offline. See fonts/ for their licenses. */
+@font-face { font-family: 'VT323'; src: url('fonts/vt323.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Press Start 2P'; src: url('fonts/press-start-2p.woff2') format('woff2'); font-display: swap; }
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -1285,6 +1289,10 @@ details p { margin: 10px 0; }
 .result-line { margin: 0; font-weight: normal; }
 .consequence { scroll-margin-top: 16px; }
 .tool-btn { min-height: 36px; }
+/* Keep content clear of the notch and home indicator when installed to a phone's home screen. */
+body { padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+.overlay { padding: max(32px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(32px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left)); }
+#feedbackModal { padding: max(24px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); }
 @media (max-width: 520px) {
   header { align-items: flex-start; padding: 12px; gap: 8px; }
   body.theme-readable .title { font-size: 15px; letter-spacing: .5px; }
@@ -1293,7 +1301,7 @@ details p { margin: 10px 0; }
   .card-meta { flex-wrap: wrap; gap: 8px; }
   .result-summary { align-items: flex-start; }
   .intro-panel { padding: 20px 16px; }
-  .overlay { padding: 20px 12px; }
+  .overlay { padding: max(20px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); }
   .track-card { flex-basis: 100%; }
   .topic-chip { min-height: 44px; }
 }
