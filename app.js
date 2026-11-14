@@ -145,7 +145,8 @@ function attachSwipe(card) {
   let gesture = null;
   const reset = () => { gesture = null; card.style.transform = ''; card.classList.remove('leaning-left','leaning-right'); };
   card.addEventListener('pointerdown', e => {
-    if (phase !== 'answering' || activeDialog || !e.isPrimary || e.button !== 0 || e.target.closest('button,a')) return;
+    // Mouse drags select text; only touch and pen swipe. Mouse users have the buttons and arrow keys.
+    if (phase !== 'answering' || activeDialog || !e.isPrimary || e.pointerType === 'mouse' || e.button !== 0 || e.target.closest('button,a')) return;
     gesture = { x:e.clientX, y:e.clientY, id:e.pointerId, horizontal:false };
   });
   card.addEventListener('pointermove', e => {
@@ -166,7 +167,9 @@ function attachSwipe(card) {
     reset(); if (commit) rule(dx<0?'deny':'grant');
   });
   card.addEventListener('pointercancel',reset);
-  card.addEventListener('lostpointercapture',reset);
+  // Touch pointers are implicitly captured by the child under the finger; moving capture to the
+  // card fires a bubbling lostpointercapture from that child, which must not cancel the gesture.
+  card.addEventListener('lostpointercapture',e=>{ if (e.target===card) reset(); });
 }
 function rule(direction) {
   if (phase !== 'answering' || activeDialog || !['grant','deny'].includes(direction)) return;

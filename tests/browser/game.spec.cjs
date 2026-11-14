@@ -91,3 +91,33 @@ test('feedback success preserves metadata for a follow-up without sending real m
   expect(requests).toHaveLength(2);
   for(const body of requests){expect(body).toContain('name="motion_id"');expect(body).toMatch(/evidence-\d+/);expect(body).toContain('name="correct_ruling"');}
 });
+async function touchSwipe(page,selector,dx){
+  const cdp=await page.context().newCDPSession(page);
+  const box=await page.locator(selector).boundingBox();
+  const y=box.y+Math.min(20,box.height/2),x0=dx>0?box.x+10:box.x+box.width-10;
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:x0,y}]});
+  for(let i=1;i<=12;i++){await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x0+dx*i/12,y}]});await page.waitForTimeout(16);}
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+}
+test('touch swipes that start on card text commit the matching ruling',async({page,browserName,hasTouch})=>{
+  test.skip(browserName!=='chromium'||!hasTouch,'Touch input is synthesized through Chromium DevTools');
+  await start(page);await experts(page);
+  await touchSwipe(page,'.card-flavor',40);
+  await expect(page.locator('#consequence')).toBeHidden();
+  await touchSwipe(page,'.card-flavor',200);
+  await expect(page.locator('.result-rulings')).toContainText('You ruled: GRANT');
+  await page.getByRole('button',{name:'NEXT MOTION ▶',exact:true}).click();
+  await touchSwipe(page,'#motionTitle',-200);
+  await expect(page.locator('.result-rulings')).toContainText('You ruled: DENY');
+});
+test('dragging the mouse across the record selects text without ruling',async({page,isMobile})=>{
+  test.skip(isMobile,'Mouse selection applies to desktop pointers');
+  await start(page);await experts(page);
+  const box=await page.locator('.card-flavor').boundingBox();
+  await page.mouse.move(box.x+20,box.y+12);await page.mouse.down();
+  await page.mouse.move(box.x+260,box.y+14,{steps:12});await page.mouse.up();
+  await expect(page.locator('#consequence')).toBeHidden();
+  expect(await page.evaluate(()=>String(getSelection()).length)).toBeGreaterThan(0);
+  await page.keyboard.press('ArrowRight');
+  await expect(page.locator('#resultHeading')).toBeVisible();
+});
