@@ -271,7 +271,10 @@ function openFeedbackModal(id) {
   $('fbMotionTitle').value=m.title; $('fbTrack').value=TRACKS[m._srcTrack].name;
   $('fbCorrectRuling').value=m.correctRuling; $('fbCitation').value=m.citation; $('fbMotionId').value=m.id;
   $('fbContext').textContent=`RE: “${m.title}” (${TRACKS[m._srcTrack].name})${phase==='answering'?' · Timer paused':''}`;
-  $('feedbackStatus').textContent=''; showDialog('feedbackModal','open');
+  $('feedbackStatus').textContent='';
+  // The clock is paused here, so an undecided Challenge card must not stay readable behind the form.
+  $('feedbackModal').classList.toggle('concealing',phase==='answering'&&mode==='challenge');
+  showDialog('feedbackModal','open');
 }
 function closeFeedbackModal() { closeDialog(); resumeTimer(); }
 $('feedbackForm').addEventListener('submit',async e=>{
@@ -290,6 +293,8 @@ $('feedbackForm').addEventListener('submit',async e=>{
 function updateTrackProgress() {
   for (const card of document.querySelectorAll('[data-track]')) {
     const key=card.dataset.track, pool=motionPool(key), s=progress.summary(pool);
+    const label=card.querySelector('.track-card-label');
+    if (key!=='mixed') label.textContent=`${label.textContent.split(' · ')[0]} · ${pool.length} MOTIONS`;
     card.querySelector('.track-card-progress').textContent=`${s.seen}/${pool.length} seen · Accuracy ${accuracy(s.correct,s.wrong)} · ${s.missed} to revisit`;
     card.querySelector('.start-track').textContent=`START ${Math.min(10,pool.length)} MOTIONS →`;
     card.querySelector('.start-track').setAttribute('aria-label',`Start ${TRACKS[key].name}: ${Math.min(10,pool.length)} motions`);
@@ -335,6 +340,8 @@ document.querySelectorAll('[data-track]').forEach(card=>{
 $('modeStudy').addEventListener('click',()=>setMode('study'));
 $('modeChallenge').addEventListener('click',()=>setMode('challenge'));
 $('reviewLastBtn').addEventListener('click',()=>showReview(true));
+// Progress saved by another tab shows up here without a reload.
+window.addEventListener('storage',e=>{ if (e.key==='lazyjurist:progress:v2') { progress.sync(); if (phase==='menu') updateTrackProgress(); } });
 
 // Theme and sound preferences keep the existing keys.
 let audioCtx=null, soundOn=storage.getItem('judge9:sound')!=='off', lastTickSec=-1;

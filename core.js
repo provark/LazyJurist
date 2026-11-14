@@ -60,13 +60,28 @@
       if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) stats = parsed;
     } catch {}
     const validNumber = v => Number.isFinite(v) && v >= 0 ? Math.floor(v) : 0;
+    const clean = old => ({
+      seen: old?.seen === true, correct: validNumber(old?.correct), wrong: validNumber(old?.wrong),
+      splits: validNumber(old?.splits), lastAttempt: typeof old?.lastAttempt === 'string' ? old.lastAttempt : null,
+      lastOutcome: ['correct', 'wrong', 'split'].includes(old?.lastOutcome) ? old.lastOutcome : null
+    });
+    const attempts = p => p.correct + p.wrong + p.splits;
+    // Another tab may have saved since this one loaded. Adopt whichever copy of
+    // each motion has more recorded attempts so neither tab erases the other.
+    function sync() {
+      let parsed;
+      try { parsed = JSON.parse(storage.getItem(key) || '{}'); } catch { return; }
+      if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return;
+      for (const m of motions) {
+        const theirs = clean(parsed[m.id]), mine = stats[m.id];
+        const newer = attempts(theirs) > attempts(mine) ||
+          (attempts(theirs) === attempts(mine) && (theirs.lastAttempt || '') > (mine.lastAttempt || ''));
+        if (newer) stats[m.id] = { ...theirs, seen: theirs.seen || mine.seen };
+        else if (theirs.seen) mine.seen = true;
+      }
+    }
     for (const m of motions) {
-      const old = stats[m.id];
-      stats[m.id] = {
-        seen: old?.seen === true, correct: validNumber(old?.correct), wrong: validNumber(old?.wrong),
-        splits: validNumber(old?.splits), lastAttempt: typeof old?.lastAttempt === 'string' ? old.lastAttempt : null,
-        lastOutcome: ['correct', 'wrong', 'split'].includes(old?.lastOutcome) ? old.lastOutcome : null
-      };
+      stats[m.id] = clean(stats[m.id]);
       // Never delete the old keys. Import title-based coverage once and keep
       // title aliases for cards whose procedural framing has changed.
       try {
@@ -87,7 +102,9 @@
           s.missed += Number(p.lastOutcome === 'wrong'); return s;
         }, { seen: 0, correct: 0, wrong: 0, splits: 0, missed: 0 });
       },
+      sync,
       record(m, result, date = new Date().toISOString()) {
+        sync();
         const p = stats[m.id];
         p.seen = true; p.lastAttempt = date;
         p.lastOutcome = result.split ? 'split' : result.isCorrect ? 'correct' : 'wrong';

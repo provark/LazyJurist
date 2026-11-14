@@ -65,6 +65,16 @@ test('corrupt or unavailable storage never stops a playable session',()=>{
   const blocked={getItem(){throw Error('blocked');},setItem(){throw Error('blocked');}};
   const p=J.createProgress(blocked,motions); p.record(motions[0],{isCorrect:false,split:false}); assert.equal(p.missed(motions).length,1);
 });
+test('two tabs sharing storage keep each other\'s progress',()=>{
+  const store=storage(),a=J.createProgress(store,motions),b=J.createProgress(store,motions);
+  a.record(motions[0],{split:false,isCorrect:false},'2026-11-14T10:00:00Z');
+  b.record(motions[1],{split:false,isCorrect:true},'2026-11-14T10:01:00Z');
+  a.record(motions[2],{split:true,isCorrect:false},'2026-11-14T10:02:00Z');
+  const fresh=J.createProgress(store,motions);
+  assert.equal(fresh.seen().size,3);assert.equal(fresh.get(motions[0].id).wrong,1);
+  assert.equal(fresh.get(motions[1].id).correct,1);assert.equal(fresh.get(motions[2].id).splits,1);
+  b.sync();assert.equal(b.missed(motions).length,1);
+});
 test('a late correct ruling breaks a wrong streak and clears the warning',()=>{
   const m=motions.find(m=>!m.ambiguous);
   const r=J.scoreRuling({...J.initialState(),streak:-3,warning:true},m,m.correctRuling,100,'challenge');

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lazy Jurist · Legal Motion Practice</title>
-  <meta name="description" content="Practice ruling on 155 legal motions. Learn at your own pace in Study mode or test yourself in a timed Challenge.">
+  <meta name="description" content="Practice ruling on legal motions in evidence, procedure, and constitutional law. Learn at your own pace in Study mode or test yourself in a timed Challenge.">
   <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -37,7 +37,7 @@
   <div class="track-grid">
 
     <div class="track-card ev" data-track="evidence">
-      <div class="track-card-label">TRACK 01 · 32 MOTIONS</div>
+      <div class="track-card-label">TRACK 01</div>
       <div class="track-card-name">EVIDENCE</div>
       <div class="track-card-desc">Admissibility, hearsay, authentication, impeachment, and privilege under the Federal Rules of Evidence.</div>
       <div class="track-card-topics"></div>
@@ -46,7 +46,7 @@
     </div>
 
     <div class="track-card cr" data-track="crimPro">
-      <div class="track-card-label">TRACK 02 · 32 MOTIONS</div>
+      <div class="track-card-label">TRACK 02</div>
       <div class="track-card-name">CRIMINAL<br>PROCEDURE</div>
       <div class="track-card-desc">Fourth, Fifth, and Sixth Amendment motions from stop and frisk through plea and trial.</div>
       <div class="track-card-topics"></div>
@@ -55,7 +55,7 @@
     </div>
 
     <div class="track-card cv" data-track="civPro">
-      <div class="track-card-label">TRACK 03 · 28 MOTIONS</div>
+      <div class="track-card-label">TRACK 03</div>
       <div class="track-card-name">CIVIL<br>PROCEDURE</div>
       <div class="track-card-desc">Pleading, jurisdiction, Erie, joinder, class actions, and judgment as a matter of law under the Federal Rules.</div>
       <div class="track-card-topics"></div>
@@ -64,7 +64,7 @@
     </div>
 
     <div class="track-card co" data-track="conLaw">
-      <div class="track-card-label">TRACK 04 · 33 MOTIONS</div>
+      <div class="track-card-label">TRACK 04</div>
       <div class="track-card-name">CONSTITUTIONAL<br>LAW</div>
       <div class="track-card-desc">Speech, religion, equal protection, due process, takings, commerce, and state action. GRANT = constitutional violation found.</div>
       <div class="track-card-topics"></div>
@@ -73,7 +73,7 @@
     </div>
 
       <div class="track-card rs" data-track="recentScotus">
-        <div class="track-card-label">TRACK 05 · 30 MOTIONS</div>
+        <div class="track-card-label">TRACK 05</div>
         <div class="track-card-name">RECENT<br>SUPREME COURT</div>
         <div class="track-card-desc">Roberts Court doctrine shifts: agency power, speech and religion, guns, equality, elections, federal courts, and separation of powers.</div>
         <div class="track-card-topics"></div>
@@ -180,6 +180,8 @@
       <input type="hidden" name="track" id="fbTrack">
       <input type="hidden" name="correct_ruling" id="fbCorrectRuling">
       <input type="hidden" name="citation" id="fbCitation">
+      <!-- Formspree honeypot: people never see or fill this; submissions that do are discarded. -->
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" hidden>
       <label for="fbEmail">Your email (optional)</label>
       <input type="email" id="fbEmail" name="email" placeholder="you@example.com">
       <label for="fbMessage">Comment *</label>

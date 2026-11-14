@@ -34,6 +34,7 @@ test('feedback conceals the answer, pauses elapsed time and traps keyboard focus
   await expect(page.locator('#fbMessage')).toBeFocused();
   await page.clock.runFor(120000);
   await expect(page.locator('#timerNumber')).toHaveText(timer);
+  await expect(page.locator('#feedbackModal')).toHaveCSS('background-color','rgb(5, 8, 5)');
   await page.keyboard.press('ArrowRight');
   await expect(page.locator('#consequence')).toBeHidden();
   await page.getByRole('button',{name:'SEND',exact:true}).focus();await page.keyboard.press('Tab');
@@ -90,6 +91,8 @@ test('feedback success preserves metadata for a follow-up without sending real m
   }
   expect(requests).toHaveLength(2);
   for(const body of requests){expect(body).toContain('name="motion_id"');expect(body).toMatch(/evidence-\d+/);expect(body).toContain('name="correct_ruling"');}
+  await expect(page.locator('[name="_gotcha"]')).toBeHidden();await expect(page.locator('[name="_gotcha"]')).toHaveValue('');
+  await expect(page.locator('#feedbackModal')).not.toHaveClass(/concealing/);
 });
 async function touchSwipe(page,selector,dx){
   const cdp=await page.context().newCDPSession(page);
@@ -120,4 +123,11 @@ test('dragging the mouse across the record selects text without ruling',async({p
   expect(await page.evaluate(()=>String(getSelection()).length)).toBeGreaterThan(0);
   await page.keyboard.press('ArrowRight');
   await expect(page.locator('#resultHeading')).toBeVisible();
+});
+test('track labels show bank sizes taken from the motion data',async({page})=>{
+  await start(page);
+  for(const [key,track] of Object.entries(TRACKS)){
+    if(key==='mixed')continue;
+    await expect(page.locator(`[data-track="${key}"] .track-card-label`)).toContainText(`· ${track.motions.length} MOTIONS`);
+  }
 });
