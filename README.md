@@ -51,7 +51,7 @@ Open `http://127.0.0.1:4173`. A Python static server also works; use the exact `
 - `data.js`: motion bank and explicit topic metadata
 - `core.js`: scoring, sampling, and persistent progress
 - `app.js`: interface, timers, keyboard/swipe input, review, and feedback
-- `Background_image_2.png`: courtroom background
+- `Background_image_2.webp`: courtroom background
 
 Publish these six files together. Keep the existing `Index.html` entry point and hosting route. This revision does not replace the deployment provider or add a build requirement. Node and Playwright are used only for development and tests.
 

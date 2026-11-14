@@ -35,7 +35,7 @@
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      background-image: url('Background_image_2.png');
+      background-image: url('Background_image_2.webp');
       background-size: 100% auto;
       background-position: center;
       background-repeat: no-repeat;
@@ -1270,6 +1270,7 @@ body.theme-readable .track-card .track-card-progress { font-size: 12px; letter-s
 #gameOverlay .overlay-title { margin-top: auto; }
 #gameOverlay .overlay-btns { margin-bottom: auto; }
 #feedbackModal { overflow-y: auto; align-items: flex-start; justify-content: center; padding: 24px 16px; }
+#feedbackModal.concealing { background: #050805; }
 #feedbackModalBox { margin-block: auto; width: min(560px,100%); max-height: none; overflow: visible; }
 .authority-links { font-style: normal; line-height: 1.8; margin-top: 8px; }
 .authority-links a { color: #b4e6ff; text-decoration: underline; overflow-wrap: anywhere; }
