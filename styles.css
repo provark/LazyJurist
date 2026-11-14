@@ -1232,7 +1232,8 @@
 :focus-visible { outline: 3px solid #ffd84d; outline-offset: 4px; }
 button:disabled { opacity: .45; cursor: default; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.card { touch-action: pan-y; max-width: 100%; user-select: text; }
+.card { touch-action: pan-y; max-width: 100%; user-select: text; cursor: auto; }
+.card:active { cursor: auto; }
 .card-title { font-weight: normal; }
 .card.collapsed { touch-action: auto; }
 .card-area { padding-bottom: 12px; }
