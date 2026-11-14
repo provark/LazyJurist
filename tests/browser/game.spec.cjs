@@ -131,3 +131,20 @@ test('track labels show bank sizes taken from the motion data',async({page})=>{
     await expect(page.locator(`[data-track="${key}"] .track-card-label`)).toContainText(`· ${track.motions.length} MOTIONS`);
   }
 });
+test('an installed copy keeps working offline with bundled fonts',async({page,context,browserName})=>{
+  test.skip(browserName!=='chromium','Offline service worker behaviour is checked in Chromium');
+  const external=[];page.on('request',r=>{if(!r.url().startsWith('http://127.0.0.1'))external.push(r.url());});
+  await start(page);
+  const manifest=await (await page.request.get(await page.locator('link[rel="manifest"]').getAttribute('href'))).json();
+  expect(manifest.display).toBe('standalone');
+  for(const icon of manifest.icons)expect((await page.request.get(icon.src)).ok()).toBeTruthy();
+  await page.evaluate(()=>navigator.serviceWorker.ready);
+  const loadFonts=()=>page.evaluate(async()=>(await Promise.all(["16px 'Press Start 2P'","16px 'VT323'"].map(f=>document.fonts.load(f)))).map(faces=>faces.length));
+  expect(await loadFonts()).toEqual([1,1]);
+  expect(external).toEqual([]);
+  await context.setOffline(true);await page.reload();
+  expect(await loadFonts()).toEqual([1,1]);
+  await experts(page);await answer(page);
+  await expect(page.locator('#resultHeading')).toBeVisible();
+  expect(await page.evaluate(()=>getComputedStyle(document.getElementById('courtroom-bg')).backgroundImage)).toContain('Background_image_2.webp');
+});

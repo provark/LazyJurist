@@ -364,4 +364,6 @@ function updatePreferences() {
   $('soundToggle').textContent='SOUND: '+(soundOn?'ON':'OFF'); $('themeToggle').textContent='THEME: '+(readableTheme?'READABLE':'CLASSIC');
 }
 updatePreferences(); setMode(mode); updateTrackProgress();
+// Offline play and home-screen install. Skipped for file:// pages, where service workers are unavailable.
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(()=>{});
 if(storage.getItem('judge9:introSeen')!=='1') showIntro();
